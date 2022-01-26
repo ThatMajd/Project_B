@@ -1,0 +1,55 @@
+{% extends 'template.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% block content %}
+    <div align="center" >
+    <H1 style="color: cadetblue">Buy Stocks Page</H1>
+    <form method="POST" >
+        {% csrf_token %}
+        <label for="id" style="display: inline-block;width: 80px;text-align: right">ID:</label>
+        <input type="number" id="id" name="id" required><br><br>
+
+        <label for="company" style="display: inline-block;width: 80px;text-align: right">Company:</label>
+        <input type="text" id="company" name="company" required><br><br>
+
+        <label for="quantity" style="display: inline-block;width: 80px;text-align: right">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" required><br><br>
+
+        <input type="submit"><br><br>
+
+        <strong style="color: red;font-size: x-large;">{{ msg|linebreaks }}</strong>
+        <strong style="color: green;font-size: x-large;">{{ smsg|linebreaks }}</strong>
+
+
+    </form>
+    </div>
+
+    <div align="center">
+    <h1 style="color: cadetblue">Top 10 most expensive purchases</h1>
+    <table border="2" style="background-color: white; margin-left: auto;margin-right: auto" >
+        <tr>
+            <th>Date</th>
+            <th>Investor ID</th>
+            <th>Company</th>
+            <th>Payed</th>
+        </tr>
+        {% for content in sql_res %}
+            <tr>
+                <td> {{ content.tDate }}</td>
+                <td> {{ content.ID }}</td>
+                <td> {{ content.Symbol }}</td>
+                <td> {{ content.Payed }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    </div>
+
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'template.html' %}
+{% block content %}
+
+    <div align="center">
+    <H1 style="color: cadetblue">Add New Transaction</H1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="id" style="display: inline-block;width: 80px;text-align: right">ID:</label>
+        <input type="number" id="id" name="id" required><br>
+
+        <label for="transaction_sum" style="display: inline-block;width: 80px;text-align: right">Transaction Sum:</label>
+        <input type="number" id="transaction_sum" name="transaction_sum" required><br><br>
+
+        <input type="submit"><br><br>
+
+        <strong style="color: red;font-size: x-large;">{{ msg|linebreaks }}</strong>
+
+    </form>
+    </div>
+
+
+    <div align="center">
+    <h1 style="color: cadetblue">Top 10 Latest Transactions</h1>
+    <table border="2" style="background-color: white; margin-left: auto;margin-right: auto" >
+        <tr>
+            <th>Date</th>
+            <th>Investor ID</th>
+            <th>Transaction Sum</th>
+        </tr>
+        {% for content in res_sql %}
+            <tr>
+                <td> {{ content.tDate }}</td>
+                <td> {{ content.ID }}</td>
+                <td> {{ content.TQuantity }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    </div>
+
+{% endblock %}
+</body>
+</html>

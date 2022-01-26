@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'template.html' %}
+{% block content %}
+    <div align="center">
+    <h1 style="color: cadetblue">Query 1</h1>
+    <table border="2" style="background-color: white; margin-left: auto;margin-right: auto" >
+        <tr>
+            <th>Name</th>
+            <th>Total Sum</th>
+        </tr>
+        {% for content in sql_res1 %}
+            <tr>
+                <td> {{ content.Name }}</td>
+                <td> {{ content.ttlsum}}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+    </div>
+
+    <div align="center">
+    <h1 style="color: cadetblue">Query 2</h1>
+    <table border="2" style="background-color: white; margin-left: auto;margin-right: auto" >
+        <tr>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>Quantity</th>
+        </tr>
+        {% for content in sql_res2 %}
+            <tr>
+                <td> {{ content.Symbol }}</td>
+                <td> {{ content.Name}}</td>
+                <td> {{ content.Quantity}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    </div>
+
+    <div align="center">
+    <h1 style="color: cadetblue">Query 3</h1>
+    <table border="2" style="background-color: white; margin-left: auto;margin-right: auto" >
+        <tr>
+            <th>Date</th>
+            <th>Symbol</th>
+            <th>Name</th>
+        </tr>
+        {% for content in sql_res3 %}
+            <tr>
+                <td> {{ content.tDate }}</td>
+                <td> {{ content.Symbol}}</td>
+                <td> {{ content.Name}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    </div>
+
+{% endblock %}
+
+</body>
+</html>
